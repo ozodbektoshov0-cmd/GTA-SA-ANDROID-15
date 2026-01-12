@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GTA San Andreas Android 15 | Ozodbek Edition</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: { DEFAULT: '#f59e0b', light: '#fbbf24' },
+            secondary: '#d97706',
+            background: '#050505',
+            surface: 'rgba(30, 30, 30, 0.7)',
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      background-color: #050505;
+      color: #f1f1f1;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Loading screen */
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 1;
+      transition: opacity 0.6s ease-out;
+    }
+
+    #loading-screen.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loader {
+      width: 48px;
+      height: 48px;
+      border: 5px solid rgba(245, 158, 11, 0.2);
+      border-top: 5px solid #f59e0b;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .card-bg {
+      background: rgba(30, 30, 30, 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .card-bg:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.25);
+    }
+
+    iframe {
+      border-radius: 16px;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body class="dark">
+
+  <!-- LOADING SCREEN -->
+  <div id="loading-screen">
+    <div class="loader"></div>
+  </div>
+
+  <header class="px-6 py-5 flex flex-col sm:flex-row justify-between items-center gap-3 border-b border-zinc-800">
+    <div class="text-2xl md:text-3xl font-black bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
+      GTA SA <span class="text-white">ANDROID 15</span>
+    </div>
+    <span class="px-4 py-1.5 bg-red-900/60 text-red-300 text-xs font-bold rounded-full tracking-wide uppercase">
+      Mod by Ozodbek
+    </span>
+  </header>
+
+  <main class="py-12 px-6 max-w-4xl mx-auto">
+    <section class="text-center mb-14">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-3 tracking-tight">
+        Grand Theft Auto: San Andreas
+      </h1>
+      <p class="text-yellow-400 font-semibold tracking-wide text-lg">
+        Android 15 uchun maxsus sozlangan versiya
+      </p>
+      <div class="w-24 h-1 bg-gradient-to-r from-yellow-500 to-yellow-600 mx-auto rounded-full mt-6"></div>
+    </section>
+
+    <!-- Download Cards -->
+    <section class="mb-20">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- APK Card -->
+        <a href="https://www.mediafire.com/file/cam2dxin1f3oky4/GTA+SA+By+OZODBEK.apk/file" target="_blank" rel="noopener noreferrer" class="card-bg p-7 rounded-2xl group block">
+          <div class="flex justify-between items-start mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+            </svg>
+            <span class="text-xs bg-zinc-800/70 px-2.5 py-1 rounded text-gray-400 font-mono">42.97 MB</span>
+          </div>
+          <h3 class="text-xl font-bold mb-3 group-hover:text-yellow-400 transition-colors">Asosiy APK Fayl</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Android 15 moslikli asosiy o‘rnatish paketi.
+          </p>
+          <div class="mt-6 inline-block font-bold text-yellow-500 group-hover:text-yellow-400 transition-colors">
+            Yuklab olish →
+          </div>
+        </a>
+
+        <!-- Data ZIP Card -->
+        <a href="https://www.mediafire.com/file/81izse4xh5zau5y/GTA+SA+By+OZODBEK.zip/file" target="_blank" rel="noopener noreferrer" class="card-bg p-7 rounded-2xl group block">
+          <div class="flex justify-between items-start mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
+            </svg>
+            <span class="text-xs bg-zinc-800/70 px-2.5 py-1 rounded text-gray-400 font-mono">2.06 GB</span>
+          </div>
+          <h3 class="text-xl font-bold mb-3 group-hover:text-yellow-400 transition-colors">Data Fayl (ZIP)</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            O‘yinning barcha resurslari (xaritalar, teksturalar, ovozlar).
+          </p>
+          <div class="mt-6 inline-block font-bold text-yellow-500 group-hover:text-yellow-400 transition-colors">
+            Yuklab olish →
+          </div>
+        </a>
+
+        <!-- MT Manager -->
+        <a href="https://www.mediafire.com/file/czfy3mqkwkumytg/MT+manager.apk/file" target="_blank" rel="noopener noreferrer" class="card-bg p-6 rounded-2xl border border-zinc-800 hover:border-blue-500 transition-colors">
+          <h4 class="font-semibold mb-2 text-blue-400 flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+            </svg>
+            MT Manager
+          </h4>
+          <p class="text-xs text-gray-500 mb-3">Fayllarni ko‘chirish va tahrirlash uchun.</p>
+          <span class="text-blue-400 text-sm font-medium">Yuklab olish</span>
+        </a>
+
+        <!-- ZArchiver -->
+        <a href="https://play.google.com/store/apps/details?id=ru.zdevs.zarchiver" target="_blank" rel="noopener noreferrer" class="card-bg p-6 rounded-2xl border border-zinc-800 hover:border-green-500 transition-colors">
+          <h4 class="font-semibold mb-2 text-green-400 flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2" />
+            </svg>
+            ZArchiver
+          </h4>
+          <p class="text-xs text-gray-500 mb-3">ZIP arxivlarni ochish uchun ilova.</p>
+          <span class="text-green-400 text-sm font-medium">Play Marketdan olish</span>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- YouTube Video Section (ALOHIDA VA PASTDA) -->
+    <section class="pt-8 border-t border-zinc-800/50">
+      <h2 class="text-2xl font-bold text-center mb-6 text-yellow-400">O‘rnatishni Ko‘rish</h2>
+      <div class="rounded-2xl overflow-hidden shadow-2xl">
+        <!-- 🔁 YOUR_VIDEO_ID ni o'z YouTube IDingiz bilan almashtiring -->
+        <iframe
+          src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+          title="GTA SA Android 15 O‘rnatish Qo‘llanmasi"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <p class="text-gray-400 text-center mt-4 text-sm">
+        To‘liq qo‘llanma — 2 daqiqada!
+      </p>
+    </section>
+  </main>
+
+  <footer class="py-8 text-center border-t border-zinc-900 text-gray-500 text-sm">
+    &copy; 2026 <span class="font-semibold">GTA SA Mod by Ozodbek</span>. Barcha huquqlar himoyalangan.
+  </footer>
+
+  <script>
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('loading-screen');
+      setTimeout(() => {
+        loader.classList.add('fade-out');
+      }, 600);
+    });
+  </script>
+</body>
+</html>
