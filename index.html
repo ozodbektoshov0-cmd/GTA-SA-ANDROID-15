@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GTA SA UZBEK | Android 15</title>
+  <title>GTA SA UZBEK | Ozodbek Modz</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -12,294 +13,231 @@
         extend: {
           colors: {
             primary: { DEFAULT: '#f59e0b', light: '#fbbf24' },
-            secondary: '#d97706',
-            background: '#050505',
-            surface: 'rgba(30, 30, 30, 0.7)',
+            background: '#0a0a0a',
           }
         }
       }
     };
   </script>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600;800&display=swap');
+
     body {
-      background-color: #050505;
+      background-color: #0a0a0a;
       color: #f1f1f1;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      overflow-x: hidden;
+      font-family: 'Inter', sans-serif;
       transition: background-color 0.3s, color 0.3s;
     }
 
-    /* Loading screen */
+    .dark body { background-color: #0a0a0a; color: #f1f1f1; }
+    .light body { background-color: #f4f4f5; color: #18181b; }
+
     #loading-screen {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       background: #000;
       display: flex;
       justify-content: center;
       align-items: center;
       z-index: 9999;
-      opacity: 1;
       transition: opacity 0.6s ease-out;
     }
 
-    #loading-screen.fade-out {
-      opacity: 0;
-      pointer-events: none;
-    }
-
     .loader {
-      width: 48px;
-      height: 48px;
-      border: 5px solid rgba(245, 158, 11, 0.2);
+      width: 50px;
+      height: 50px;
+      border: 5px solid #333;
       border-top: 5px solid #f59e0b;
       border-radius: 50%;
       animation: spin 1s linear infinite;
     }
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
 
     .card-bg {
       background: rgba(30, 30, 30, 0.6);
       backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
-      border-radius: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 1.25rem;
+    }
+
+    .light .card-bg {
+      background: rgba(255, 255, 255, 0.8);
+      border-color: rgba(0, 0, 0, 0.1);
     }
 
     .card-bg:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 30px -6px rgba(245, 158, 11, 0.35);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 25px -5px rgba(245, 158, 11, 0.2);
+      border-color: #f59e0b;
     }
 
-    iframe {
-      border-radius: 16px;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      border: none;
+    .btn-gradient {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      transition: transform 0.2s;
     }
 
-    .btn-download {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-weight: 600;
-      transition: color 0.2s;
-    }
+    .btn-gradient:hover { transform: scale(1.02); }
 
-    /* Toast notification */
     #toast {
       position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: rgba(30, 30, 30, 0.95);
-      color: #fbbf24;
-      padding: 12px 20px;
-      border-radius: 12px;
-      font-size: 0.95rem;
+      bottom: 30px;
+      left: 50%;
+      transform: translate(-50%, 150%);
+      background: #10b981;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 50px;
       font-weight: 600;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(251, 191, 36, 0.2);
-      transform: translateX(200%);
-      transition: transform 0.3s ease-out;
-      z-index: 999;
+      z-index: 1000;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    #toast.show {
-      transform: translateX(0);
-    }
+    #toast.show { transform: translate(-50%, 0); }
   </style>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 </head>
 <body class="dark">
 
-  <!-- LOADING SCREEN -->
   <div id="loading-screen">
     <div class="loader"></div>
   </div>
 
-  <header class="px-6 py-5 flex flex-col sm:flex-row justify-between items-center gap-4 border-b border-zinc-800">
-    <div class="flex items-center gap-3">
-      <img
-        src="https://i.postimg.cc/2jB188dN/IMG-20260114-210442.png"
-        alt="GTA SA Android 15 Logo"
-        class="h-12 w-auto rounded-lg shadow-md"
-      />
-      <div class="text-2xl md:text-3xl font-black text-white">
-        GTA SA Android 15
-      </div>
-    </div>
-    <div class="flex items-center gap-3">
-      <button id="theme-toggle" class="p-2 rounded-full bg-zinc-800 hover:bg-zinc-700 transition">
-        <span id="theme-icon" class="text-yellow-400 text-xl">🌙</span>
-      </button>
-      <span class="px-4 py-1.5 bg-red-900/60 text-red-300 text-xs font-bold rounded-full tracking-wide uppercase">
-        By Ozodbek
-      </span>
-    </div>
+  <header class="container mx-auto px-6 py-6 flex flex-col items-center gap-4">
+    <img src="https://i.postimg.cc/2jB188dN/IMG-20260114-210442.png" alt="Logo" class="h-20 w-auto rounded-2xl shadow-2xl border-2 border-primary" />
+    <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-center uppercase italic" style="font-family: 'Orbitron', sans-serif;">
+      GTA SA <span class="text-primary">UZBEK</span>
+    </h1>
+    <span class="px-4 py-1 bg-primary/20 text-primary text-xs font-bold rounded-full border border-primary/30 uppercase">
+      By Ozodbek
+    </span>
   </header>
 
-  <main class="py-12 px-6 max-w-4xl mx-auto">
-    <section class="mb-16">
-      <h1 class="text-3xl md:text-4xl font-extrabold text-center mb-4 text-yellow-400">
-        ANDROID 15 uchun O‘zbekcha GTA SA
-      </h1>
-      <p class="text-gray-400 text-center mb-10">
-        Quyidagi barcha fayllarni yuklab oling va o‘yinni to‘liq ishlating.
-      </p>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
-        <!-- APK Card -->
-        <a href="https://www.mediafire.com/file/cam2dxin1f3oky4/GTA+SA+By+OZODBEK.apk/file" target="_blank" rel="noopener noreferrer" class="card-bg p-7 block" data-name="Asosiy APK">
-          <div class="flex justify-between items-start mb-5">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-            </svg>
-            <span class="text-xs bg-zinc-800/70 px-2.5 py-1 rounded text-gray-400 font-mono">42.97 MB</span>
-          </div>
-          <h3 class="text-xl font-bold mb-3 text-white group-hover:text-yellow-400 transition-colors">Asosiy APK Fayl</h3>
-          <p class="text-gray-400 text-base leading-relaxed">
-            Android 15 moslikli asosiy o‘rnatish paketi.
-          </p>
-          <div class="mt-6 btn-download text-yellow-500">
-            Yuklab olish →
-          </div>
-        </a>
-
-        <!-- Data ZIP Card -->
-        <a href="https://www.mediafire.com/file/81izse4xh5zau5y/GTA+SA+By+OZODBEK.zip/file" target="_blank" rel="noopener noreferrer" class="card-bg p-7 block" data-name="Data ZIP">
-          <div class="flex justify-between items-start mb-5">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
-            </svg>
-            <span class="text-xs bg-zinc-800/70 px-2.5 py-1 rounded text-gray-400 font-mono">2.06 GB</span>
-          </div>
-          <h3 class="text-xl font-bold mb-3 text-white group-hover:text-yellow-400 transition-colors">Data Fayl (ZIP)</h3>
-          <p class="text-gray-400 text-base leading-relaxed">
-            O‘yinning barcha resurslari (xaritalar, teksturalar, ovozlar).
-          </p>
-          <div class="mt-6 btn-download text-yellow-500">
-            Yuklab olish →
-          </div>
-        </a>
-
-        <!-- MT Manager -->
-        <a href="https://www.mediafire.com/file/czfy3mqkwkumytg/MT+manager.apk/file" target="_blank" rel="noopener noreferrer" class="card-bg p-7 flex flex-col justify-between" data-name="MT Manager">
-          <div>
-            <h4 class="font-semibold mb-2 text-blue-400 flex items-center gap-2 text-lg">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-              </svg>
-              MT Manager
-            </h4>
-            <p class="text-gray-400 text-base">Fayllarni ko‘chirish va tahrirlash uchun.</p>
-          </div>
-          <span class="text-blue-400 text-base font-medium mt-3">Yuklab olish</span>
-        </a>
-
-        <!-- ZArchiver -->
-        <a href="https://play.google.com/store/apps/details?id=ru.zdevs.zarchiver" target="_blank" rel="noopener noreferrer" class="card-bg p-7 flex flex-col justify-between" data-name="ZArchiver">
-          <div>
-            <h4 class="font-semibold mb-2 text-green-400 flex items-center gap-2 text-lg">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2" />
-              </svg>
-              ZArchiver
-            </h4>
-            <p class="text-gray-400 text-base">ZIP arxivlarni ochish uchun ilova.</p>
-          </div>
-          <span class="text-green-400 text-base font-medium mt-3">Play Marketdan olish</span>
-        </a>
-      </div>
-
-      <!-- YouTube Video -->
-      <div class="mt-10 card-bg p-6 rounded-2xl border border-zinc-800">
-        <h3 class="text-xl font-bold mb-4 text-yellow-400 flex items-center gap-2">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          O‘rnatishni Ko‘rish
-        </h3>
-        <div class="rounded-xl overflow-hidden shadow-lg">
-          <iframe
-            src="https://www.youtube.com/embed/BhlsA9fELKM"
-            title="GTA SA Android 15 O‘rnatish Qo‘llanmasi"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          ></iframe>
+  <main class="max-w-4xl mx-auto px-6 pb-20">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+      
+      <a href="https://www.mediafire.com/file/cam2dxin1f3oky4/GTA+SA+By+OZODBEK.apk/file" target="_blank" class="card-bg p-6" data-name="GTA SA APK">
+        <div class="flex justify-between items-start mb-4">
+          <i class="fa-brands fa-android text-4xl text-green-500"></i>
+          <span class="text-xs font-mono opacity-60">42.97 MB</span>
         </div>
-        <p class="text-gray-400 text-sm mt-3">
-          To‘liq qo‘llanma — 2 daqiqada!
-        </p>
+        <h3 class="text-xl font-bold mb-2">Asosiy APK</h3>
+        <p class="text-sm opacity-70 mb-4">O'yinning o'rnatish paketi. Barcha telefonlar uchun.</p>
+        <div class="flex items-center text-primary font-bold">
+          <i class="fa-solid fa-download mr-2"></i> Yuklab olish
+        </div>
+      </a>
+
+      <a href="https://www.mediafire.com/file/81izse4xh5zau5y/GTA+SA+By+OZODBEK.zip/file" target="_blank" class="card-bg p-6" data-name="GTA SA Data">
+        <div class="flex justify-between items-start mb-4">
+          <i class="fa-solid fa-box-archive text-4xl text-blue-500"></i>
+          <span class="text-xs font-mono opacity-60">2.06 GB</span>
+        </div>
+        <h3 class="text-xl font-bold mb-2">Data Fayl (ZIP)</h3>
+        <p class="text-sm opacity-70 mb-4">O'yin teksturalari va xaritalari (O'zbekcha modlar ichida).</p>
+        <div class="flex items-center text-primary font-bold">
+          <i class="fa-solid fa-file-zipper mr-2"></i> Yuklab olish
+        </div>
+      </a>
+
+      <a href="https://www.mediafire.com/file/czfy3mqkwkumytg/MT+manager.apk/file" target="_blank" class="card-bg p-5 flex items-center gap-4" data-name="MT Manager">
+        <i class="fa-solid fa-screwdriver-wrench text-2xl text-yellow-500"></i>
+        <div>
+          <h4 class="font-bold">MT Manager</h4>
+          <p class="text-xs opacity-60">Fayl tahrirlagich</p>
+        </div>
+        <i class="fa-solid fa-chevron-right ml-auto text-primary"></i>
+      </a>
+
+      <a href="https://play.google.com/store/apps/details?id=ru.zdevs.zarchiver" target="_blank" class="card-bg p-5 flex items-center gap-4" data-name="ZArchiver">
+        <i class="fa-solid fa-folder-tree text-2xl text-emerald-500"></i>
+        <div>
+          <h4 class="font-bold">ZArchiver</h4>
+          <p class="text-xs opacity-60">Arxivlovchi dastur</p>
+        </div>
+        <i class="fa-solid fa-chevron-right ml-auto text-primary"></i>
+      </a>
+    </div>
+
+    <div class="mt-10 card-bg p-4 overflow-hidden">
+      <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+        <i class="fa-solid fa-play-circle text-red-600"></i> O'rnatish Qo'llanmasi
+      </h3>
+      <div class="rounded-xl overflow-hidden shadow-2xl">
+        <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/BhlsA9fELKM" frameborder="0" allowfullscreen></iframe>
       </div>
-    </section>
+    </div>
+
+    <div class="mt-12 text-center">
+      <h3 class="text-xl font-bold mb-6 italic">IJTIMOIY TARMOQLARIMIZ</h3>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="https://t.me/OZODBEK_MODZ" target="_blank" class="flex items-center gap-2 px-6 py-3 rounded-full bg-[#0088cc] text-white font-bold hover:shadow-[0_0_20px_rgba(0,136,204,0.5)] transition">
+          <i class="fa-brands fa-telegram text-xl"></i> Telegram Kanal
+        </a>
+        <a href="https://www.youtube.com/@Ozodbek_Modz" target="_blank" class="flex items-center gap-2 px-6 py-3 rounded-full bg-[#ff0000] text-white font-bold hover:shadow-[0_0_20px_rgba(255,0,0,0.5)] transition">
+          <i class="fa-brands fa-youtube text-xl"></i> YouTube Kanal
+        </a>
+      </div>
+    </div>
+
+    <footer class="mt-20 pt-10 border-t border-white/10 text-center">
+      <button id="theme-toggle" class="mb-8 px-6 py-2 rounded-full border border-primary/40 hover:bg-primary/10 transition flex items-center gap-2 mx-auto">
+        <span id="theme-icon">🌙</span> <span id="theme-text">Tungi rejim</span>
+      </button>
+      
+      <p class="text-sm opacity-50">&copy; 2026 GTA SA UZBEK. Hamma huquqlar himoyalangan.</p>
+      <p class="text-xs mt-2 text-primary/60">Dizayn Ozodbek tomonidan tayyorlandi</p>
+    </footer>
   </main>
 
-  <footer class="py-8 text-center border-t border-zinc-800/50 text-gray-500 text-sm space-y-2">
-    <p>&copy; 2026 <span class="font-semibold">GTA SA Android 15 by Ozodbek</span>. Barcha huquqlar himoyalangan.</p>
-    <div class="flex flex-wrap justify-center gap-4 text-gray-400">
-      <a href="https://ozodbektoshov0-cmd.github.io/GTA-SA-ANDROID-15/" target="_blank" class="hover:text-yellow-400 transition">Rasmiy veb-sayt</a>
-      <a href="https://www.youtube.com/@Ozodbek_Modz" target="_blank" class="hover:text-yellow-400 transition">YouTube kanal</a>
-      <a href="https://t.me/OZODBEK_MODZ" target="_blank" class="hover:text-yellow-400 transition">Telegram kanal</a>
-    </div>
-  </footer>
-
-  <!-- Toast Notification -->
-  <div id="toast">✅ <span id="toast-text"></span></div>
+  <div id="toast"><i class="fa-solid fa-circle-check mr-2"></i> <span id="toast-msg"></span></div>
 
   <script>
-    // Theme toggle
-    const htmlRoot = document.getElementById('html-root');
-    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.getElementById('html-root');
+    const themeBtn = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
+    const themeText = document.getElementById('theme-text');
 
-    function setTheme(theme) {
-      if (theme === 'light') {
-        htmlRoot.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-        themeIcon.textContent = '☀️';
+    function updateTheme(isDark) {
+      if (isDark) {
+        html.classList.add('dark');
+        html.classList.remove('light');
+        themeIcon.innerText = '☀️';
+        themeText.innerText = 'Kungi rejim';
       } else {
-        htmlRoot.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-        themeIcon.textContent = '🌙';
+        html.classList.add('light');
+        html.classList.remove('dark');
+        themeIcon.innerText = '🌙';
+        themeText.innerText = 'Tungi rejim';
       }
     }
 
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    setTheme(savedTheme);
-
-    themeToggle.addEventListener('click', () => {
-      const current = localStorage.getItem('theme') === 'light' ? 'dark' : 'light';
-      setTheme(current);
+    themeBtn.addEventListener('click', () => {
+      const isDark = !html.classList.contains('dark');
+      updateTheme(isDark);
+      localStorage.setItem('gta_theme', isDark ? 'dark' : 'light');
     });
 
-    // Download toast notification
+    // Toast
     document.querySelectorAll('a[data-name]').forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const name = link.getAttribute('data-name');
+      link.addEventListener('click', () => {
+        const msg = link.getAttribute('data-name');
         const toast = document.getElementById('toast');
-        const toastText = document.getElementById('toast-text');
-        toastText.textContent = `"${name}" yuklanmoqda...`;
+        document.getElementById('toast-msg').innerText = msg + " yuklanmoqda...";
         toast.classList.add('show');
         setTimeout(() => toast.classList.remove('show'), 3000);
-        window.open(link.href, '_blank', 'noopener,noreferrer');
       });
     });
 
-    // Loading screen fade out
     window.addEventListener('load', () => {
-      const loader = document.getElementById('loading-screen');
-      setTimeout(() => loader.classList.add('fade-out'), 600);
+      setTimeout(() => {
+        document.getElementById('loading-screen').style.opacity = '0';
+        setTimeout(() => document.getElementById('loading-screen').remove(), 600);
+      }, 800);
+      
+      const saved = localStorage.getItem('gta_theme') || 'dark';
+      updateTheme(saved === 'dark');
     });
   </script>
 </body>
