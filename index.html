@@ -21,224 +21,161 @@
   </script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600;800&display=swap');
-
-    body {
-      background-color: #0a0a0a;
-      color: #f1f1f1;
-      font-family: 'Inter', sans-serif;
-      transition: background-color 0.3s, color 0.3s;
-    }
-
+    body { background-color: #0a0a0a; color: #f1f1f1; font-family: 'Inter', sans-serif; transition: background-color 0.3s, color 0.3s; }
     .dark body { background-color: #0a0a0a; color: #f1f1f1; }
     .light body { background-color: #f4f4f5; color: #18181b; }
-
-    #loading-screen {
-      position: fixed;
-      inset: 0;
-      background: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      transition: opacity 0.6s ease-out;
-    }
-
-    .loader {
-      width: 50px;
-      height: 50px;
-      border: 5px solid #333;
-      border-top: 5px solid #f59e0b;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-
+    #loading-screen { position: fixed; inset: 0; background: #000; display: flex; justify-content: center; align-items: center; z-index: 9999; transition: opacity 0.6s ease-out; }
+    .loader { width: 50px; height: 50px; border: 5px solid #333; border-top: 5px solid #f59e0b; border-radius: 50%; animation: spin 1s linear infinite; }
     @keyframes spin { 100% { transform: rotate(360deg); } }
-
-    .card-bg {
-      background: rgba(30, 30, 30, 0.6);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      border-radius: 1.25rem;
-    }
-
-    .light .card-bg {
-      background: rgba(255, 255, 255, 0.8);
-      border-color: rgba(0, 0, 0, 0.1);
-    }
-
-    .card-bg:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 25px -5px rgba(245, 158, 11, 0.2);
-      border-color: #f59e0b;
-    }
-
-    .btn-gradient {
-      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-      transition: transform 0.2s;
-    }
-
-    .btn-gradient:hover { transform: scale(1.02); }
-
-    #toast {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translate(-50%, 150%);
-      background: #10b981;
-      color: white;
-      padding: 12px 24px;
-      border-radius: 50px;
-      font-weight: 600;
-      z-index: 1000;
-      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
+    .card-bg { background: rgba(30, 30, 30, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border-radius: 1.25rem; }
+    .light .card-bg { background: rgba(255, 255, 255, 0.8); border-color: rgba(0, 0, 0, 0.1); }
+    #toast { position: fixed; bottom: 30px; left: 50%; transform: translate(-50%, 150%); background: #10b981; color: white; padding: 12px 24px; border-radius: 50px; font-weight: 600; z-index: 1000; transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
     #toast.show { transform: translate(-50%, 0); }
+    .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-out, opacity 0.3s ease; opacity: 0; }
+    .accordion-content.open { max-height: 2000px; opacity: 1; }
   </style>
 </head>
 <body class="dark">
 
-  <div id="loading-screen">
-    <div class="loader"></div>
-  </div>
+  <div id="loading-screen"><div class="loader"></div></div>
 
   <header class="container mx-auto px-6 py-6 flex flex-col items-center gap-4">
     <img src="https://i.postimg.cc/2jB188dN/IMG-20260114-210442.png" alt="Logo" class="h-20 w-auto rounded-2xl shadow-2xl border-2 border-primary" />
-    <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-center uppercase italic" style="font-family: 'Orbitron', sans-serif;">
+    <h1 class="text-3xl md:text-5xl font-black tracking-tighter text-center uppercase italic" style="font-family: 'Orbitron', sans-serif;">
       GTA SA <span class="text-primary">UZBEK</span>
     </h1>
-    <span class="px-4 py-1 bg-primary/20 text-primary text-xs font-bold rounded-full border border-primary/30 uppercase">
-      By Ozodbek
-    </span>
+    <span class="px-4 py-1 bg-primary/20 text-primary text-xs font-bold rounded-full border border-primary/30 uppercase">By Ozodbek</span>
   </header>
 
   <main class="max-w-4xl mx-auto px-6 pb-20">
     
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
-      
-      <a href="https://www.mediafire.com/file/cam2dxin1f3oky4/GTA+SA+By+OZODBEK.apk/file" target="_blank" class="card-bg p-6" data-name="GTA SA APK">
-        <div class="flex justify-between items-start mb-4">
+    <div class="mt-10 card-bg overflow-hidden border-2 border-primary/40">
+      <button onclick="toggleSection('android-main', 'chevron-main')" class="w-full flex items-center justify-between p-6 bg-primary/10 hover:bg-primary/20 transition text-left">
+        <div class="flex items-center gap-4">
           <i class="fa-brands fa-android text-4xl text-green-500"></i>
-          <span class="text-xs font-mono opacity-60">42.97 MB</span>
+          <div>
+            <h2 class="text-lg md:text-xl font-extrabold uppercase tracking-tight">Android 11 dan 16 gacha</h2>
+            <p class="text-[10px] text-primary font-bold uppercase tracking-widest">Telefonlar uchun modlar</p>
+          </div>
         </div>
-        <h3 class="text-xl font-bold mb-2">Asosiy APK</h3>
-        <p class="text-sm opacity-70 mb-4">O'yinning o'rnatish paketi. Barcha telefonlar uchun.</p>
-        <div class="flex items-center text-primary font-bold">
-          <i class="fa-solid fa-download mr-2"></i> Yuklab olish
-        </div>
-      </a>
-
-      <a href="https://www.mediafire.com/file/81izse4xh5zau5y/GTA+SA+By+OZODBEK.zip/file" target="_blank" class="card-bg p-6" data-name="GTA SA Data">
-        <div class="flex justify-between items-start mb-4">
-          <i class="fa-solid fa-box-archive text-4xl text-blue-500"></i>
-          <span class="text-xs font-mono opacity-60">2.06 GB</span>
-        </div>
-        <h3 class="text-xl font-bold mb-2">Data Fayl (ZIP)</h3>
-        <p class="text-sm opacity-70 mb-4">O'yin teksturalari va xaritalari (O'zbekcha modlar ichida).</p>
-        <div class="flex items-center text-primary font-bold">
-          <i class="fa-solid fa-file-zipper mr-2"></i> Yuklab olish
-        </div>
-      </a>
-
-      <a href="https://www.mediafire.com/file/czfy3mqkwkumytg/MT+manager.apk/file" target="_blank" class="card-bg p-5 flex items-center gap-4" data-name="MT Manager">
-        <i class="fa-solid fa-screwdriver-wrench text-2xl text-yellow-500"></i>
-        <div>
-          <h4 class="font-bold">MT Manager</h4>
-          <p class="text-xs opacity-60">Fayl tahrirlagich</p>
-        </div>
-        <i class="fa-solid fa-chevron-right ml-auto text-primary"></i>
-      </a>
-
-      <a href="https://play.google.com/store/apps/details?id=ru.zdevs.zarchiver" target="_blank" class="card-bg p-5 flex items-center gap-4" data-name="ZArchiver">
-        <i class="fa-solid fa-folder-tree text-2xl text-emerald-500"></i>
-        <div>
-          <h4 class="font-bold">ZArchiver</h4>
-          <p class="text-xs opacity-60">Arxivlovchi dastur</p>
-        </div>
-        <i class="fa-solid fa-chevron-right ml-auto text-primary"></i>
-      </a>
-    </div>
-
-    <div class="mt-10 card-bg p-4 overflow-hidden">
-      <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
-        <i class="fa-solid fa-play-circle text-red-600"></i> O'rnatish Qo'llanmasi
-      </h3>
-      <div class="rounded-xl overflow-hidden shadow-2xl">
-        <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/BhlsA9fELKM" frameborder="0" allowfullscreen></iframe>
-      </div>
-    </div>
-
-    <div class="mt-12 text-center">
-      <h3 class="text-xl font-bold mb-6 italic">IJTIMOIY TARMOQLARIMIZ</h3>
-      <div class="flex flex-wrap justify-center gap-4">
-        <a href="https://t.me/OZODBEK_MODZ" target="_blank" class="flex items-center gap-2 px-6 py-3 rounded-full bg-[#0088cc] text-white font-bold hover:shadow-[0_0_20px_rgba(0,136,204,0.5)] transition">
-          <i class="fa-brands fa-telegram text-xl"></i> Telegram Kanal
-        </a>
-        <a href="https://www.youtube.com/@Ozodbek_Modz" target="_blank" class="flex items-center gap-2 px-6 py-3 rounded-full bg-[#ff0000] text-white font-bold hover:shadow-[0_0_20px_rgba(255,0,0,0.5)] transition">
-          <i class="fa-brands fa-youtube text-xl"></i> YouTube Kanal
-        </a>
-      </div>
-    </div>
-
-    <footer class="mt-20 pt-10 border-t border-white/10 text-center">
-      <button id="theme-toggle" class="mb-8 px-6 py-2 rounded-full border border-primary/40 hover:bg-primary/10 transition flex items-center gap-2 mx-auto">
-        <span id="theme-icon">🌙</span> <span id="theme-text">Tungi rejim</span>
+        <i id="chevron-main" class="fa-solid fa-chevron-down text-primary transition-transform duration-300"></i>
       </button>
-      
-      <p class="text-sm opacity-50">&copy; 2026 GTA SA UZBEK. Hamma huquqlar himoyalangan.</p>
-      <p class="text-xs mt-2 text-primary/60">Dizayn Ozodbek tomonidan tayyorlandi</p>
+
+      <div id="android-main" class="accordion-content">
+        <div class="p-4 md:p-6 space-y-4 bg-black/20">
+          
+          <div class="card-bg overflow-hidden border border-white/10">
+            <button onclick="toggleSection('cheat-section', 'chevron-1')" class="w-full flex items-center justify-between p-4 bg-white/5 hover:bg-white/10 transition">
+              <span class="font-bold text-sm uppercase italic flex items-center gap-2">
+                <i class="fa-solid fa-bolt text-primary"></i> Cheat menu li O'zbekcha GTA SA
+              </span>
+              <i id="chevron-1" class="fa-solid fa-plus text-primary transition-transform"></i>
+            </button>
+            <div id="cheat-section" class="accordion-content">
+              <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-3 border-t border-white/5">
+                <a href="https://www.mediafire.com/file/cam2dxin1f3oky4/GTA+SA+By+OZODBEK.apk/file" target="_blank" class="p-3 bg-black/40 rounded-lg border border-white/5 hover:border-primary transition flex items-center gap-3" data-name="Cheat GTA APK">
+                  <i class="fa-brands fa-android text-green-500"></i> <span class="text-xs font-bold">APK (Cheat Menu)</span>
+                </a>
+                <a href="https://www.mediafire.com/file/81izse4xh5zau5y/GTA+SA+By+OZODBEK.zip/file" target="_blank" class="p-3 bg-black/40 rounded-lg border border-white/5 hover:border-primary transition flex items-center gap-3" data-name="Cheat GTA Data">
+                  <i class="fa-solid fa-file-zipper text-blue-500"></i> <span class="text-xs font-bold">Data (Cheat Menu)</span>
+                </a>
+                <a href="https://www.mediafire.com/file/czfy3mqkwkumytg/MT+manager.apk/file" target="_blank" class="p-3 bg-black/40 rounded-lg border border-white/5 hover:border-primary transition flex items-center gap-3">
+                  <i class="fa-solid fa-screwdriver-wrench text-yellow-500"></i> <span class="text-xs font-bold">MT Manager</span>
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=ru.zdevs.zarchiver" target="_blank" class="p-3 bg-black/40 rounded-lg border border-white/5 hover:border-primary transition flex items-center gap-3">
+                  <i class="fa-solid fa-folder-tree text-emerald-500"></i> <span class="text-xs font-bold">ZArchiver</span>
+                </a>
+                <div class="md:col-span-2 aspect-video rounded-lg overflow-hidden border border-white/10">
+                  <iframe class="w-full h-full" src="https://www.youtube.com/embed/BhlsA9fELKM" frameborder="0" allowfullscreen></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-bg overflow-hidden border border-white/10">
+            <button onclick="toggleSection('sadox-section', 'chevron-2')" class="w-full flex items-center justify-between p-4 bg-white/5 hover:bg-white/10 transition">
+              <span class="font-bold text-sm uppercase italic flex items-center gap-2">
+                <i class="fa-solid fa-image text-primary"></i> SA_DOX grafikali O'zbekcha GTA SA
+              </span>
+              <i id="chevron-2" class="fa-solid fa-plus text-primary transition-transform"></i>
+            </button>
+            <div id="sadox-section" class="accordion-content">
+              <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-3 border-t border-white/5">
+                <a href="https://www.mediafire.com/file/3zhjnxztpjw5s8q/Gta+sa+uzbek+(OZODBEK+MODZ).apk/file" target="_blank" class="p-3 bg-black/40 rounded-lg border border-white/5 hover:border-primary transition flex items-center gap-3" data-name="SA_DOX APK">
+                  <i class="fa-brands fa-android text-green-500"></i> <span class="text-xs font-bold">SA_DOX APK</span>
+                </a>
+                <a href="https://www.mediafire.com/file/807iuc13iy26j84/SA_DOX_grafikali_O%2527zbekcha_Gta_Sa_%2528OZODBEK_MODZ%2529.7z/file" target="_blank" class="p-3 bg-black/40 rounded-lg border border-white/5 hover:border-primary transition flex items-center gap-3" data-name="SA_DOX Data">
+                  <i class="fa-solid fa-box-archive text-blue-500"></i> <span class="text-xs font-bold">SA_DOX Data (7z)</span>
+                </a>
+                <a href="https://www.mediafire.com/file/czfy3mqkwkumytg/MT+manager.apk/file" target="_blank" class="p-3 bg-black/40 rounded-lg border border-white/5 hover:border-primary transition flex items-center gap-3">
+                  <i class="fa-solid fa-screwdriver-wrench text-yellow-500"></i> <span class="text-xs font-bold">MT Manager</span>
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=ru.zdevs.zarchiver" target="_blank" class="p-3 bg-black/40 rounded-lg border border-white/5 hover:border-primary transition flex items-center gap-3">
+                  <i class="fa-solid fa-folder-tree text-emerald-500"></i> <span class="text-xs font-bold">ZArchiver</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <h3 class="text-center text-sm font-bold mb-6 opacity-60 tracking-widest uppercase italic">Biz ijtimoiy tarmoqlarda</h3>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="https://t.me/OZODBEK_MODZ" target="_blank" class="flex items-center gap-2 px-6 py-3 rounded-full bg-[#0088cc] text-white font-bold text-xs uppercase transition hover:scale-105 shadow-lg">
+          <i class="fa-brands fa-telegram text-lg"></i> Telegram
+        </a>
+        <a href="https://www.youtube.com/@Ozodbek_Modz" target="_blank" class="flex items-center gap-2 px-6 py-3 rounded-full bg-[#ff0000] text-white font-bold text-xs uppercase transition hover:scale-105 shadow-lg">
+          <i class="fa-brands fa-youtube text-lg"></i> YouTube
+        </a>
+        <a href="https://www.instagram.com/ozodbekmodz?igsh=dWEzNnEzajhrN3g4" target="_blank" class="flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-white font-bold text-xs uppercase transition hover:scale-105 shadow-lg">
+          <i class="fa-brands fa-instagram text-lg"></i> Instagram
+        </a>
+      </div>
+    </div>
+
+    <footer class="mt-20 pt-10 border-t border-white/10 text-center text-[10px] opacity-40 uppercase tracking-widest">
+      &copy; 2026 GTA SA UZBEK | OZODBEK MODZ
     </footer>
   </main>
 
   <div id="toast"><i class="fa-solid fa-circle-check mr-2"></i> <span id="toast-msg"></span></div>
 
   <script>
-    const html = document.getElementById('html-root');
-    const themeBtn = document.getElementById('theme-toggle');
-    const themeIcon = document.getElementById('theme-icon');
-    const themeText = document.getElementById('theme-text');
+    function toggleSection(id, chevronId) {
+      const content = document.getElementById(id);
+      const chevron = document.getElementById(chevronId);
+      const isOpen = content.classList.contains('open');
 
-    function updateTheme(isDark) {
-      if (isDark) {
-        html.classList.add('dark');
-        html.classList.remove('light');
-        themeIcon.innerText = '☀️';
-        themeText.innerText = 'Kungi rejim';
+      if (!isOpen) {
+        content.classList.add('open');
+        if(chevronId === 'chevron-main') chevron.style.transform = 'rotate(180deg)';
+        else chevron.classList.replace('fa-plus', 'fa-minus');
       } else {
-        html.classList.add('light');
-        html.classList.remove('dark');
-        themeIcon.innerText = '🌙';
-        themeText.innerText = 'Tungi rejim';
+        content.classList.remove('open');
+        if(chevronId === 'chevron-main') chevron.style.transform = 'rotate(0deg)';
+        else chevron.classList.replace('fa-minus', 'fa-plus');
       }
     }
-
-    themeBtn.addEventListener('click', () => {
-      const isDark = !html.classList.contains('dark');
-      updateTheme(isDark);
-      localStorage.setItem('gta_theme', isDark ? 'dark' : 'light');
-    });
-
-    // Toast
-    document.querySelectorAll('a[data-name]').forEach(link => {
-      link.addEventListener('click', () => {
-        const msg = link.getAttribute('data-name');
-        const toast = document.getElementById('toast');
-        document.getElementById('toast-msg').innerText = msg + " yuklanmoqda...";
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 3000);
-      });
-    });
 
     window.addEventListener('load', () => {
       setTimeout(() => {
         document.getElementById('loading-screen').style.opacity = '0';
         setTimeout(() => document.getElementById('loading-screen').remove(), 600);
       }, 800);
-      
-      const saved = localStorage.getItem('gta_theme') || 'dark';
-      updateTheme(saved === 'dark');
+    });
+
+    document.querySelectorAll('a[data-name]').forEach(link => {
+      link.addEventListener('click', () => {
+        const toast = document.getElementById('toast');
+        document.getElementById('toast-msg').innerText = link.getAttribute('data-name') + " yuklanmoqda...";
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
+      });
     });
   </script>
 </body>
 </html>
+
